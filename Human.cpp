@@ -16,10 +16,16 @@ Move* Human::makeMove() {
         {"Rock", new Rock()},
         {"Paper", new Paper()},
         {"Scissors", new Scissors()}
-        // Add more moves here as needed
+        // Add other moves as needed
     };
 
-    return moveMap[moveName];
+    auto it = moveMap.find(moveName);
+    if (it != moveMap.end()) {
+        return it->second;
+    } else {
+        std::cout << "Invalid move entered. Defaulting to Rock." << std::endl;
+        return new Rock();
+    }
 }
 
 std::string Human::getName() {

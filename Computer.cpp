@@ -2,7 +2,7 @@
 #include "Rock.h"
 
 Move* Computer::makeMove() {
-    return new Rock(); // Always plays Rock
+    return new Rock();
 }
 
 std::string Computer::getName() {
