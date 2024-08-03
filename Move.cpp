@@ -1,13 +1,12 @@
 #include "Move.h"
 #include <string>
-#include <vector>
-using namespace std;
-Move::Move(){};
-Move::Move(string m):move(m){};
+#include <unordered_set>
 
-string Move::getName(){
-    return this->move;
+
+std::string Move::getName(){
+    return name;
 }
- vector<string> Move::getVector(){
-    return winHand;
+
+std::unordered_set<std::string> Move::findWin(){
+    return winConditions;
 }

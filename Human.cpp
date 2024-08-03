@@ -1,38 +1,20 @@
 #include "Human.h"
-#include "Player.h"
-#include "Move.h"
-#include <iostream>
-using namespace std;
 #include <string>
+#include <iostream>
 
-Human::Human(string name) : Player(name)
-{
-        // cout << "Enter move: "; 
-       
-        
-};
-Human::Human() : Player("Human")
-{
-        // cout << "Enter move: ";
-        
-};
 
-Move * Human::makeMove()
-{
-        string move;
-        cin >> move;
-        Assign assigner;
-        this->move = assigner.AssignMove(move);
+Human::Human(): name("Human"){}
 
-        return this->move;
-};
+Human::Human(std::string name): name(name){}
 
-string Human::getMove(){
-        Move * a = this->move;
-        return a->getName();
+Move* Human:: makeMove(){
+    std::string newMove;
+    // std::cout<<"Enter move: ";
+    std::cin>> newMove;
+    Move* playerMove = moveLists.selectMove(newMove);
+    return playerMove;
 }
 
-string Human::getName()
-{
-        return this->name;
-};
+std::string Human::getName(){
+    return name;
+}
