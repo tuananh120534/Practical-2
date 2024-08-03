@@ -1,21 +1,43 @@
 #include "Referee.h"
+#include "Player.h"
+#include "Computer.h"
+#include <string>
+#include <vector>
+#include <algorithm>
+#include "Move.h"
+using namespace std;
+// The referee class will match two players and return a reference to the winning player.  In the case of a tie, the referee will return a nullptr.
 
-Referee::Referee() {}
+Referee::Referee(){}; // constructor
+Player *Referee::refGame(Player *player1, Player *player2)
+{
+    Move *a = player1->makeMove();
+    Move *b = player2->makeMove();
+    string  result = a->getName();
+    string target = b->getName();
+    
+    vector<string> winHandA = a->getVector();
+    string p1 = player1->getName();
 
-Player* Referee::refGame(Player* player1, Player* player2) {
-    Move* move1 = player1->makeMove();
-    Move* move2 = player2->makeMove();
+    string p2 = player2->getName();
 
-    Player* winner = nullptr;
+   
 
-    if (move1->beats(*move2)) {
-        winner = player1;
-    } else if (move2->beats(*move1)) {
-        winner = player2;
+
+
+    if (result == target)
+    {
+        return nullptr;
     }
 
-    delete move1;
-    delete move2;
+    for (int i = 0; i <winHandA.size(); i++){
+        if(winHandA[i]==target){
+            return player1;
+    }
+    };
+    
 
-    return winner;
-}
+        return player2;
+    
+    // player2 wins
+};

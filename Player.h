@@ -1,14 +1,23 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include <iostream>
 #include <string>
 #include "Move.h"
+using namespace std;
 
-class Player {
+class Player
+{
+    protected:
+    string name;
+    Move * move;
+
 public:
-    virtual Move* makeMove() = 0;
-    virtual std::string getName() = 0;
-    virtual ~Player() {}
+    Player(string name);
+    Player();
+
+    virtual Move* makeMove()=0;
+    virtual string getName()=0;
+    virtual ~Player();
 };
 
 #endif

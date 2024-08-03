@@ -1,33 +1,38 @@
 #include "Human.h"
-#include "Rock.h"
-#include "Paper.h"
-#include "Scissors.h"
+#include "Player.h"
+#include "Move.h"
 #include <iostream>
-#include <unordered_map>
+using namespace std;
+#include <string>
 
-Human::Human(const std::string& name) : name(name) {}
+Human::Human(string name) : Player(name)
+{
+        // cout << "Enter move: "; 
+       
+        
+};
+Human::Human() : Player("Human")
+{
+        // cout << "Enter move: ";
+        
+};
 
-Move* Human::makeMove() {
-    std::string moveName;
-    std::cout << "Enter Move: ";
-    std::cin >> moveName;
+Move * Human::makeMove()
+{
+        string move;
+        cin >> move;
+        Assign assigner;
+        this->move = assigner.AssignMove(move);
 
-    static std::unordered_map<std::string, Move*> moveMap = {
-        {"Rock", new Rock()},
-        {"Paper", new Paper()},
-        {"Scissors", new Scissors()}
-        // Add other moves as needed
-    };
+        return this->move;
+};
 
-    auto it = moveMap.find(moveName);
-    if (it != moveMap.end()) {
-        return it->second;
-    } else {
-        std::cout << "Invalid move entered. Defaulting to Rock." << std::endl;
-        return new Rock();
-    }
+string Human::getMove(){
+        Move * a = this->move;
+        return a->getName();
 }
 
-std::string Human::getName() {
-    return name;
-}
+string Human::getName()
+{
+        return this->name;
+};
